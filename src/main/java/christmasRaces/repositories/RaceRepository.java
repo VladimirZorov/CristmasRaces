@@ -1,27 +1,43 @@
 package main.java.christmasRaces.repositories;
 
 import main.java.christmasRaces.entities.races.Race;
+import main.java.christmasRaces.repositories.interfaces.Repository;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class RaceRepository implements main.java.christmasRaces.repositories.interfaces.Repository<main.java.christmasRaces.entities.races.Race> {
+public class RaceRepository<T> implements Repository<Race> {
+    private Map<String, Race> models;
+
+    public RaceRepository() {
+        this.models = new LinkedHashMap<>();
+    }
+
     @Override
     public Race getByName(String name) {
-        return null;
+        Race race = null;
+        if (models.containsKey(name)) {
+            race = models.get(name);
+        }
+        return race;
     }
 
     @Override
     public Collection<Race> getAll() {
-        return null;
+
+        return Collections.unmodifiableCollection(this.models.values());
     }
 
     @Override
     public void add(Race model) {
-
+        this.models.putIfAbsent(model.getName(), model);
     }
 
     @Override
     public boolean remove(Race model) {
-        return false;
+        Race remove = models.remove(model.getName());
+        return remove != null;
     }
 }

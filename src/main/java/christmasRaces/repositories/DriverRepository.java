@@ -1,27 +1,43 @@
 package main.java.christmasRaces.repositories;
 
 import main.java.christmasRaces.entities.drivers.Driver;
+import main.java.christmasRaces.repositories.interfaces.Repository;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class DriverRepository implements main.java.christmasRaces.repositories.interfaces.Repository<main.java.christmasRaces.entities.drivers.Driver> {
+public class DriverRepository<D> implements Repository<Driver> {
+    private Map<String, Driver> models;
+
+    public DriverRepository() {
+        this.models = new LinkedHashMap<>();
+    }
+
     @Override
     public Driver getByName(String name) {
-        return null;
+        Driver driver = null;
+        if (models.containsKey(name)) {
+            driver = models.get(name);
+        }
+        return driver;
     }
 
     @Override
     public Collection<Driver> getAll() {
-        return null;
+
+        return Collections.unmodifiableCollection(this.models.values());
     }
 
     @Override
     public void add(Driver model) {
-
+        this.models.putIfAbsent(model.getName(), model);
     }
 
     @Override
     public boolean remove(Driver model) {
-        return false;
+        Driver driver = models.remove(model.getName());
+        return driver != null;
     }
 }

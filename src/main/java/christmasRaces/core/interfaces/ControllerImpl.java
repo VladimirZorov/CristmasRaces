@@ -7,6 +7,7 @@ import main.java.christmasRaces.entities.cars.SportsCar;
 import main.java.christmasRaces.entities.drivers.Driver;
 import main.java.christmasRaces.entities.drivers.DriverImpl;
 import main.java.christmasRaces.entities.races.Race;
+import main.java.christmasRaces.entities.races.RaceImpl;
 import main.java.christmasRaces.repositories.interfaces.Repository;
 
 import java.util.HashMap;
