@@ -2,43 +2,59 @@ package main.java.christmasRaces.entities.drivers;
 
 import main.java.christmasRaces.entities.cars.Car;
 
-public class DriverImpl implements Driver{
-//    Driver driver = new Driver() {
-//    };
+import static main.java.christmasRaces.common.ExceptionMessages.CAR_INVALID;
 
-//    public DriverImpl(Driver driver) {
-//        this.driver = driver;
-//    }
+public class DriverImpl implements Driver{
+
+    private String name;
+    private Car car;
+    private int numberOfWins;
+    private  boolean canParticipate;
+
+    public DriverImpl(String name) {
+        this.setName(name);
+        this.canParticipate = false;
+    }
+
+    public void setName(String name) {
+        if(name == null || name.trim().isEmpty() || name.length()<5){
+            throw new IllegalArgumentException(String.format("Name %s cannot be less than 5 symbols.",name));
+        }
+        this.name = name;
+    }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public Car getCar() {
-        return null;
+        return this.car;
     }
 
     @Override
     public int getNumberOfWins() {
-        return 0;
+        return this.numberOfWins;
     }
 
     @Override
     public void addCar(Car car) {
-
+        if (car == null){
+            throw new IllegalArgumentException(CAR_INVALID);
+        }
+        this.car = car;
     }
 
     @Override
     public void winRace() {
+        this.numberOfWins++;
 
     }
 
     @Override
     public boolean getCanParticipate() {
-        return false;
+        return this.car != null;
     }
-
 }
 

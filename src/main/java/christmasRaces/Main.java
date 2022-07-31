@@ -1,7 +1,7 @@
 package main.java.christmasRaces;
 
-import main.java.christmasRaces.core.EngineImpl;
-import main.java.christmasRaces.core.interfaces.Controller;
+import main.java.christmasRaces.core.interfaces.EngineImpl;
+import main.java.christmasRaces.core.Controller;
 import main.java.christmasRaces.entities.cars.Car;
 import main.java.christmasRaces.entities.drivers.Driver;
 import main.java.christmasRaces.entities.races.Race;

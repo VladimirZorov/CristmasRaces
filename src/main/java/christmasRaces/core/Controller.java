@@ -1,4 +1,4 @@
-package main.java.christmasRaces.core.interfaces;
+package main.java.christmasRaces.core;
 
 public interface Controller {
     String createDriver(String driver);

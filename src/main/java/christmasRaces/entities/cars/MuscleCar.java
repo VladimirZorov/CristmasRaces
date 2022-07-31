@@ -1,35 +1,20 @@
 package main.java.christmasRaces.entities.cars;
 
-import main.java.christmasRaces.common.ExceptionMessages;
+import static main.java.christmasRaces.common.ExceptionMessages.INVALID_HORSE_POWER;
 
-public class MuscleCar implements Car {
+public class MuscleCar extends BaseCar {
 
-    public MuscleCar() {
+    private static double cubicCentimeters = 5000;
+
+    public MuscleCar(String model, int horsePower) {
+        super(model, horsePower, cubicCentimeters);
     }
-
-    @Override
-    public String getModel() {
-        return getModel();
-    }
-
-    @Override
-    public int getHorsePower() {
-        int hp = 0;
-        if (getHorsePower() <= 600 && getHorsePower() >= 400) {
-            hp = getHorsePower();
-        } else {
-            System.out.println(ExceptionMessages.INVALID_HORSE_POWER);
+    private static int valid(int horsePower) {
+        if (horsePower < 400 || horsePower > 600){
+            throw new IllegalArgumentException(String.format(INVALID_HORSE_POWER, horsePower));
         }
-        return hp;
+        return horsePower;
     }
 
-    @Override
-    public double getCubicCentimeters() {
-        return 5000;
-    }
 
-    @Override
-    public double calculateRacePoints(int laps) {
-        return (getCubicCentimeters() / getHorsePower()) * laps;
-    }
 }
